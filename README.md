@@ -1,99 +1,114 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# MailCraftAI
+AI-powered Email Generation API (NestJS + Perplexity)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+MailCraftAI is a production-ready backend API that converts raw human input into professionally written emails using AI.
+It is designed for engineering teams, customer support, corporate communication, and automation workflows.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This API is powered by **NestJS**, **PostgreSQL**, and **Perplexity’s sonar-pro model**, and is deployed on Railway.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 Live API Endpoint
 
-## Project setup
+**Base URL:**
+[https://mailcraftai-production.up.railway.app](https://mailcraftai-production.up.railway.app)
 
-```bash
-$ npm install
-```
 
-## Compile and run the project
+**Main Endpoint:**
+POST /api/email/generate
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+## 🧠 What MailCraftAI Does
 
-## Run tests
+You send:
+
+- A raw message (problem, context, note)
+- Email type (follow-up, client communication, incident report, etc.)
+- Tone (formal, polite, urgent, etc.)
+- Target audience (Bank Tech Team, Corporate Clients, Manager, etc.)
+
+MailCraftAI returns:
+
+- A polished **subject line**
+- A professionally formatted **email body**
+
+Perfect for automation, integrations, and productivity tools.
+
+---
+
+## 📦 Example Request
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+curl --location 'https://mailcraftai-production.up.railway.app/api/email/generate' \
+--header 'Content-Type: application/json' \
+--data '{
+  "raw_message": "we are facing delays due to server restart",
+  "type": "client_communication",
+  "tone": "polite",
+  "target_audience": "Corporate Clients"
+}'
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### ✔ Example Response
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+{
+  "subject": "Update: Temporary Delays Due to Server Restart",
+  "body": "Dear Corporate Clients,\n\nWe would like to inform you that we are currently experiencing delays as a result of a scheduled server restart. Our team is actively monitoring the process to ensure that normal operations resume as quickly as possible.\n\nWe apologize for any inconvenience this may cause and appreciate your patience. Further updates will be shared if there are any significant changes.\n\nBest regards,\nMailCraftAI"
+}
+```
+### 🧰 Tech Stack
+
+- Node.js
+- NestJS
+- TypeORM
+- PostgreSQL
+- Perplexity AI (sonar-pro model)
+
+### 🔐 Environment Variables
+<p>To run locally, create a .env file:</p>
+
+```bash
+PORT=3000
+PPLX_API_KEY=your_perplexity_key
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASS=yourpassword
+DB_NAME=youdbname
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 🧪 Run Locally
 
-## Resources
+```bash
+git clone https://github.com/<your-username>/MailCraftAI
+cd MailCraftAI
+npm install
+npm run start:dev
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### Local API:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
 
-## Support
+http://localhost:3000/api/email/generate
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 🤝 Contributing
 
-## Stay in touch
+Pull requests are welcome.
+Follow clean coding standards and include detailed descriptions.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 📄 License
 
-## License
+MIT License.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 🌟 Author
+
+**Shiva Silmawala**
+Software Engineer | Backend Development | NestJS | AI Integrations
+
+Passionate about building scalable APIs, AI-driven automation tools, and production-grade backend systems.
