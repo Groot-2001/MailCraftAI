@@ -84,7 +84,7 @@ DB_NAME=youdbname
 ### 🧪 Run Locally
 
 ```bash
-git clone https://github.com/<your-username>/MailCraftAI
+git clone https://github.com/groot-2001/MailCraftAI
 cd MailCraftAI
 npm install
 npm run start:dev
